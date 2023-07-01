@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   registry: "ghcr.io"
-  repository: "k8s-k3s-spolish/kbot"
+  repository: "spolish/kbot"
   tag: "v1.0.8-f9bfff8"
   arch: "amd64"
 secret:
