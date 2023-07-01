@@ -18,12 +18,11 @@ jobs:
         run: make test
 
       - name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: docker/login-action@v2
         with:
-           credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-           project_id: ${{ secrets.GCR_PROJECT }}
-      - name: 'gcloud'
-        run: gcloud --quiet auth configure-docker
+          registry: gcr.io
+          username: _json_key
+          password: ${{ secrets.GOOGLE_CREDENTIALS }}
 
       - name: Build&Push
         env:
