@@ -6,7 +6,7 @@ replicaCount: 1
 image:
   registry: gcr.io
   repository: k8s-k3s-spolish
-  tag: "v1.0.8-cf31492"
+  tag: "v1.0.8-aa8a432"
   arch: "amd64"
 secret:
   name: kbot
