@@ -11,6 +11,8 @@ jobs:
     steps:                  
       - name: Checkout
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
         
       - name: Run test
         run: make test
@@ -19,3 +21,9 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
            credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
+
+      - name: Build&Push
+        env:
+          APP: "kbot"
+          REGISTRY: gcr.io/k8s-k3s-spolish
+        run: make image push 
