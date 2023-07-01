@@ -22,8 +22,8 @@ jobs:
         with:
            credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
            project_id: ${{ secrets.GCR_PROJECT }}
-      - run: |-
-        gcloud --quiet auth configure-docker
+      - name: 'gcloud'
+        run: gcloud --quiet auth configure-docker
 
       - name: Build&Push
         env:
