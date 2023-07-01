@@ -7,7 +7,7 @@ image:
   registry: ghcr.io
   repository: k8s-k3s-spolish
   tag: "v1.0.8-a01676c"
-  arch: ""
+  arch: "amd64"
 secret:
   name: kbot
   tokenKey: token
