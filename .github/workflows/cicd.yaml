@@ -21,11 +21,12 @@ jobs:
         uses: 'google-github-actions/auth@v1'
         with:
            credentials_json: '${{ secrets.GOOGLE_CREDENTIALS }}'
-      - name: GCR authentification     
-        run: gcloud auth configure-docker
+           project_id: ${{ secrets.GKE_PROJECT }}
+    - run: |-
+        gcloud --quiet auth configure-docker
 
       - name: Build&Push
         env:
           APP: "kbot"
-          REGISTRY: gcr.io/k8s-k3s-spolish
+          REGISTRY: ${{ secrets.GKE_PROJECT }}
         run: make image push 
