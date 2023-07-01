@@ -26,4 +26,5 @@ jobs:
         env:
           APP: "kbot"
           REGISTRY: gcr.io/k8s-k3s-spolish
+        run: gcloud auth configure-docker
         run: make image push 
