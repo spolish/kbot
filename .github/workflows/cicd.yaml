@@ -45,9 +45,6 @@ jobs:
     - run: echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" >> $GITHUB_ENV
     - run: echo "TARGETARCH=amd64" >> $GITHUB_ENV
 
-    - name: debug
-      run 
-
 
     - uses: mikefarah/yq@master
       with:
