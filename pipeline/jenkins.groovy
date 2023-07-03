@@ -1,64 +1,53 @@
 pipeline {
     agent any
-
-    parameters {
-
-        choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS')
-
+    environment {
+        REPO = 'https://github.com/spolish/kbot'
+        BRANCH = 'main'
+        GITHUB_TOKEN=credentials('7e1207e4-3e32-4b41-a3e0-207dd12365c9')
     }
-
-    stages {
-        stage('CI') {
+    parameters {
+        choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS')
+        choice(name: 'ARCH', choices: ['amd64', 'arm64', 'all'], description: 'Pick ARCH')
+    }
+    stages{
+        
+        stage ("clone") {
             steps {
-                checkout scm
-
+            echo 'CLONE REPOSITORY'
+              git branch: "${BRANCH}", url: "${REPO}" 
+            }
+        }
+        
+        stage ("test") {
+            steps {
+                echo 'TEST EXECUTION STARTED'
                 sh 'make test'
-                
-                withDockerRegistry([credentialsId: 'docker-registry-credentials', url: 'https://ghcr.io']) {
-                    sh 'make image push'
+            }
+        }
+    
+        stage ("build") {
+            steps {
+                echo 'BUILD EXECUTION STARTED'
+                sh 'make build'
+            }
+        }
+        
+        
+        stage ("image") {
+            steps {
+                script {
+                    echo 'IMAGE EXECUTION STARTED'
+                    sh 'make image'
                 }
             }
         }
-
-        stage('CD') {
-            dependencies {
-                stage('CI')
-            }
+        
+        stage ("push") {
             steps {
-                checkout scm
-
-                sh 'echo "VERSION=$(git describe --tags --abbrev=0)-$(git rev-parse --short HEAD)" > version.env'
-                sh 'echo "TARGETARCH=amd64" >> version.env'
-                
-                sh 'docker run --rm -v $PWD:/workdir mikefarah/yq yq -i \'.image.tag=env.VERSION | .image.arch=env.TARGETARCH\' helm/values.yaml'
-
-                sh '''
-                git config user.name 'jenkins'
-                git config user.email 'jenkins@example.com'
-                git add .
-                git commit -m "Update version $VERSION"
-                git push
-                '''
-            }
-        }
-    }
-}
-
-
-pipeline {
-    agent any
-    parameters {
-
-        choice(name: 'OS', choices: ['linux', 'darwin', 'windows', 'all'], description: 'Pick OS')
-
-    }
-    stages {
-        stage('Example') {
-            steps {
-                echo "Build for platform ${params.OS}"
-
-                echo "Build for arch: ${params.ARCH}"
-
+                script {
+                    sh 'echo $GITHUB_TOKEN_PSW | docker login ghcr.io -u $GITHUB_TOKEN_USR --password-stdin'
+                    sh 'make push'
+                }
             }
         }
     }
