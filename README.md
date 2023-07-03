@@ -24,8 +24,8 @@ Please use commands below to manage your notification
    # For Jenkins and ghcr.io use next manual
 
 #### Create a new personal access token (classic) with the appropriate scopes for the tasks you want to accomplish. If your organization requires SSO, you must enable SSO for your new token.
+`Note: By default, when you select the write:packages scope for your personal access token (classic) in the user interface, the repo scope will also be selected. The repo scope offers unnecessary and broad access, which we recommend you avoid using for GitHub Actions workflows in particular. For more information, see "Security hardening for GitHub Actions." As a workaround, you can select just the write:packages scope for your personal access token (classic) in the user interface with this url: https://github.com/settings/tokens/new?scopes=write:packages. `
 
-    Note: By default, when you select the write:packages scope for your personal access token (classic) in the user interface, the repo scope will also be selected. The repo scope offers unnecessary and broad access, which we recommend you avoid using for GitHub Actions workflows in particular. For more information, see "Security hardening for GitHub Actions." As a workaround, you can select just the write:packages scope for your personal access token (classic) in the user interface with this url: https://github.com/settings/tokens/new?scopes=write:packages.
 - Select the read:packages scope to download container images and read their metadata.
 - Select the write:packages scope to download and upload container images and read and write their metadata.
 - Select the delete:packages scope to delete container images.
