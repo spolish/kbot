@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: polish
-  tag: "v1.0.8-a01676c"
+  tag: "v1.0.8-3df8c8e"
   arch: "amd64"
 secret:
   name: kbot
