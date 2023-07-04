@@ -4,7 +4,7 @@ VERSION=$(shell git describe --tags --abbrev=0)-$(shell git rev-parse --short HE
 TARGETOS:=linux  #linux darwin windows
 TARGETARCH=amd64 # arm64 amd64 $(shell go env GOARCH)
 IMAGE_TAG=${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
-TELE_TOKEN:=6369096639:AAFC85t4AHcljTwSRvL6B_w8DUUKKSj-kNQ
+
 
 format:
 		gofmt -s -w ./
