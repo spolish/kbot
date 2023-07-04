@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   #registry: docker.io
   repository: spolish
-  tag: "v1.0.8-efc400c"
+  tag: "v1.0.8-00d1dd3"
   arch: "amd64"
 secret:
   name: kbot
