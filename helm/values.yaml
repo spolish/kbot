@@ -12,7 +12,7 @@ image:
 secret:
   name: kbot
   tokenKey: token
-  tokenName: TELE_TOKEN
+  tokenName: 6369096639:AAFC85t4AHcljTwSRvL6B_w8DUUKKSj-kNQ
 service:
   port: 80
 securityContext:
