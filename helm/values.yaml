@@ -5,7 +5,7 @@
 replicaCount: 1
 image:
   repository: spolish
-  tag: "v1.0.8-3df8c8e"
+  tag: "v1.0.8-fa31a9d"
   arch: "amd64"
 secret:
   name: kbot
