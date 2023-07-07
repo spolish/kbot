@@ -6,6 +6,7 @@ TARGETARCH=amd64 # arm64 amd64 $(shell go env GOARCH)
 IMAGE_TAG=${REGISTRY}/${APP}:${VERSION}-${TARGETARCH}
 
 
+
 format:
 		gofmt -s -w ./
 
