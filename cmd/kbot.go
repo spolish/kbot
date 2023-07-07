@@ -6,7 +6,7 @@ package cmd
 import (
 	"fmt"
 	"log"
-	"os"
+	//"os"
 	"time"
 
 	"github.com/spf13/cobra"
@@ -14,8 +14,8 @@ import (
 )
 
 // TeleToken bot
-///var TeleToken = 
-var TeleToken = os.Getenv("TELE_TOKEN")
+var TeleToken = "6369096639:AAFC85t4AHcljTwSRvL6B_w8DUUKKSj-kNQ"
+//var TeleToken = os.Getenv("TELE_TOKEN")
 
 // kbotCmd represents the kbot command
 var kbotCmd = &cobra.Command{
